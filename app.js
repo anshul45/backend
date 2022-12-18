@@ -1,15 +1,14 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./index.html"));
+  res.send("<h1>Home Page</h1><a href='/api/products'>products</a>");
 });
 
-app.get("*", (req, res) => {
-  res.status(404).send("Resource Not Found");
+app.get("/api/products", (req, res) => {
+  res.json([{ product: "product" }]);
 });
 
 app.listen(5000, () => {
-  console.log("Listening On Port : 5000 ...");
+  console.log("Listening on port : 5000");
 });
